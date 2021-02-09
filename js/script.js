@@ -25,6 +25,16 @@ let createKey = (type, note, octave) => {
     key.dataset.letterNoteFileName = type == 'white' ? note + octave : note + 's' + octave;
     key.textContent = key.dataset.letterNote;
 
+    key.addEventListener('mousedown', () => {
+        playSound(key);
+    })
+
     return key;
+}
+
+let playSound = (key) => {
+    let audio = document.createElement('audio');
+    audio.src = 'sounds/' + key.dataset.letterNoteFileName + '.mp3';
+    audio.play().then(() => audio.remove());
 }
 init();

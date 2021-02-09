@@ -13,7 +13,7 @@
             <div class="piano__interface">
                 <div class="piano__controls">
                     <h4 class="piano__heading">PIANO</h4>
-                    <label><input type="radio" class="piano__control_option" name="control" value="letterNotes">Letter Notes</label>
+                    <label><input type="radio" class="piano__control_option" name="control" value="letterNotes" checked>Letter Notes</label>
                     <label><input type="radio" class="piano__control_option" name="control" value="keyboard">Keyboard</label>
                     <label><input type="radio" class="piano__control_option" name="control" value="none">None</label>
                 </div>
@@ -37,9 +37,13 @@
         </div>
         <div class="piano__keyboard">
             <button class="piano__key piano__key--white">C1</button>
-            <button class="piano__key piano__key--black">C#1</button>
+            <div class="empty-space">
+                <button class="piano__key piano__key--black">C#1</button>
+            </div>
             <button class="piano__key piano__key--white">D1</button>
-            <button class="piano__key piano__key--black">D#1</button>
+            <div class="empty-space">
+                <button class="piano__key piano__key--black">D#1</button>
+            </div>
             <button class="piano__key piano__key--white">E</button>
             <button class="piano__key piano__key--white">F</button>
         </div>

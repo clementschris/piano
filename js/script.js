@@ -27,6 +27,13 @@ let createKey = (type, note, octave) => {
 
     key.addEventListener('mousedown', () => {
         playSound(key);
+        key.classList.add('piano__key--playing');
+    })
+    key.addEventListener('mouseup', () => {
+        key.classList.remove('piano__key--playing');
+    })
+    key.addEventListener('mouseleave', () => {
+        key.classList.remove('piano__key--playing');
     })
 
     return key;
@@ -37,4 +44,5 @@ let playSound = (key) => {
     audio.src = 'sounds/' + key.dataset.letterNoteFileName + '.mp3';
     audio.play().then(() => audio.remove());
 }
+
 init();

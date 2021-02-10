@@ -83,6 +83,41 @@ let createKey = (type, note, octave) => {
     return key;
 };
 
+document.addEventListener('keydown', (e) => {
+    if(e.repeat) {
+        return;
+    }
+    let lastLetter = e.code.substring(e.code.length - 1);
+    let isShiftPressed = e.shiftKey;
+    let selector;
+    if(isShiftPressed) {
+        selector = `[data-keyboard="⇧+${lastLetter}"]`;
+    } else {
+        selector = `[data-keyboard=${lastLetter}]`;
+    }
+    let key = document.querySelector(selector);
+    if(key != null) {
+        let mousedown = new Event('mousedown');
+        key.dispatchEvent(mousedown);
+    }
+}) 
+
+document.addEventListener('keyup', (e) => {
+    let lastLetter = e.code.substring(e.code.length - 1);
+    let isShiftPressed = e.shiftKey;
+    let selector;
+    if(isShiftPressed) {
+        selector = `[data-keyboard="⇧+${lastLetter}"]`;
+    } else {
+        selector = `[data-keyboard=${lastLetter}]`;
+    }
+    let key = document.querySelector(selector);
+    if(key != null) {
+        let mouseup = new Event('mouseup');
+        key.dispatchEvent(mouseup);
+    }
+}) 
+
 let playSound = (key) => {
     let audio = document.createElement('audio');
     audio.src = 'sounds/' + key.dataset.letterNoteFileName + '.mp3';

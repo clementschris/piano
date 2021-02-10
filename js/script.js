@@ -38,7 +38,41 @@ let keyboardMap = [
     'B',
     'N',
 ];
+let playBtn = document.querySelector('.piano__play-btn');
 let keys = [];
+
+let happyBirthday = `G4, G4, A4,, G4,, C5,, B4,,,,
+                    G4, G4, A4,, G4,, D5,, C5,,,,
+                    G4, G4, G5,, E5,, C5,, B4,, A4,,
+                    F5, F5, E5,, C5,, D5,, C5`;
+
+let playSong = (notesString, tempo) => {
+    let notes = notesString.split(',');
+    let currentNote = 0;
+    let mousedown = new Event('mousedown');
+    let mouseup = new Event('mouseup');
+    let btn;
+
+    let interval = setInterval(() => {
+        if(currentNote < notes.length) {
+            if(notes[currentNote].trim() !== '') {
+                if(btn) {
+                    btn.dispatchEvent(mouseup);
+                }
+                btn = document.querySelector(`[data-letter-note="${notes[currentNote].trim()}"]`);
+                btn.dispatchEvent(mousedown);
+            }
+            currentNote++;
+        } else {
+            btn.dispatchEvent(mouseup);
+            clearInterval(interval);
+        }
+    }, 200);
+}
+
+playBtn.addEventListener('mousedown', () => {
+    playSong(happyBirthday, 2);
+})
 
 let init = () => {
     for (let i = 1; i <= 5; i++) {
